@@ -63,7 +63,9 @@ class HotelController extends Controller
      */
     public function update(Request $request, Hotel $hotel)
     {
-        //
+        $hotel->update($request->all());
+
+        return response()->json(new HotelResources($hotel),200);
     }
 
     /**

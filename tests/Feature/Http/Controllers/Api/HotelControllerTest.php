@@ -113,4 +113,44 @@ class HotelControllerTest extends TestCase
         
     }
 
+    public function test_to_update_hotel()
+    {
+        $this->withoutExceptionHandling();
+        $hotel = Hotel::factory()->create();
+        $response = $this->putJson('/api/hotel/' . $hotel->id, [
+            'name' => 'baru',
+            'city' => 'cartagena',
+            'num_rooms' => 5,
+            'adress' => 'calle 1',
+            'nit' => '1234567459',
+           
+        ]);
+        $response->assertOk();
+        $this->assertCount(1,Hotel::all());   
+        $hotel = $hotel->fresh();
+      
+        $this->assertEquals('baru', $hotel->name);
+        $this->assertEquals('cartagena', $hotel->city);
+        $this->assertEquals(5, $hotel->num_rooms);
+        $this->assertEquals('calle 1', $hotel->adress);
+        $this->assertEquals('1234567459', $hotel->nit);
+
+        $response->assertJson([
+            'data' => [
+                'type' => 'hotel',
+                'hotel_id' => $hotel->id,
+                'attributes' => [
+                    'name' => $hotel->name,
+                    'city' => $hotel->city,
+                    'num_rooms' => $hotel->num_rooms,
+                    'adress' => $hotel->adress,
+                    'nit' => $hotel->nit,
+                   
+                ]
+            ],
+        ]);
+
+    
+    }
+
 }
