@@ -88,6 +88,29 @@ class HotelControllerTest extends TestCase
         ]);
     }
 
-   
+    public function test_retrieve_and_list_hotel()
+    {
+        $this->withoutExceptionHandling();
+
+        $hotel = Hotel::factory()->create();
+
+        $response = $this->getJson('/api/hotel/' . $hotel->id);
+        $response->assertOk();
+        
+        $response->assertJson([
+            'data' => [
+                'type' => 'hotel',
+                'hotel_id' => $hotel->id,
+                'attributes' => [
+                    'name' => $hotel->name,
+                    'city' => $hotel->city,
+                    'num_rooms' => $hotel->num_rooms,
+                    'adress' => $hotel->adress,
+                    'nit' => $hotel->nit,
+                ]
+            ],
+        ]);
+        
+    }
 
 }

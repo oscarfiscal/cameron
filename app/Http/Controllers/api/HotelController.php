@@ -51,7 +51,7 @@ class HotelController extends Controller
      */
     public function show(Hotel $hotel)
     {
-        //
+        return new HotelResources($hotel);
     }
 
     /**
