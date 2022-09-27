@@ -17,7 +17,11 @@ class HotelFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'city' => $this->faker->city,
+            'num_rooms' => $this->faker->randomDigit,
+            'adress' => $this->faker->address,
+            'nit' => $this->faker->randomNumber(9),
         ];
     }
 }

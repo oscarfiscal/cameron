@@ -7,6 +7,7 @@ use App\Models\Hotel;
 use Illuminate\Http\Request;
 use App\Http\Requests\Hotel as HotelRequests;
 use App\Http\Resources\Hotel as HotelResources;
+use App\Http\Resources\HotelCollection;
 
 class HotelController extends Controller
 {
@@ -24,7 +25,9 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        $hotel = Hotel::all();
+
+        return new HotelCollection ($hotel);
     }
 
     /**

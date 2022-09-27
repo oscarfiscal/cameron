@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/hotel', [ App\Http\Controllers\api\HotelController::class, 'store']);
+Route::get('/hotel', [ App\Http\Controllers\api\HotelController::class, 'index']);
+
