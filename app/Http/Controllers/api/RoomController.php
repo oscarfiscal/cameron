@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Room;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 use App\Http\Requests\Room as RoomRequests;
 use App\Http\Resources\Room as RoomResources;
@@ -35,9 +36,17 @@ class RoomController extends Controller
      */
     public function store(RoomRequests  $request)
     {
-        $room = $this->room->create($request->all());
+        
+      $hotel = Hotel::where('id',$request->hotel_id)->first();
 
-        return response()->json(new RoomResources($room),201);
+        $rooms = $hotel->rooms->count();
+
+        if($hotel->num_rooms <= $rooms){
+            return response()->json(['message'=>'Habitaciones Ocupadas'],400);
+        }else{
+            $room = $this->room->create($request->all());
+            return response()->json(new RoomResources($room),201);
+        }
     }
 
     /**
