@@ -97,20 +97,6 @@ class HotelControllerTest extends TestCase
         $response = $this->getJson('/api/hotel/' . $hotel->id);
         $response->assertOk();
         
-        $response->assertJson([
-            'data' => [
-                'type' => 'hotel',
-                'hotel_id' => $hotel->id,
-                'attributes' => [
-                    'name' => $hotel->name,
-                    'city' => $hotel->city,
-                    'num_rooms' => $hotel->num_rooms,
-                    'adress' => $hotel->adress,
-                    'nit' => $hotel->nit,
-                ]
-            ],
-        ]);
-        
     }
 
     public function test_to_update_hotel()
