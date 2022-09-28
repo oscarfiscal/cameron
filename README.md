@@ -65,3 +65,20 @@ _Paso a paso que te dice lo que debes ejecutar para tener el proyecto ejecutando
     ```shell
     php artisan serve
     ```
+
+    # Observaciones 📋
+_Para que sea de conocimiento para ustedes para cada metodo aplique TDD para que fueran testeados por phpunit los test se encuentran en tests/Feature/Http/Controllers/Api para la ejecucion de estos los comandos son los siguientes_ <br>
+
+-  ## Se ejecutaran todos los test
+   ```shell
+   ./vendor/bin/phpunit  o php artisan test 
+   ...
+ 
+-  ## Para ejecutar uno por uno seria algo asi
+   ```shell
+   ./vendor/bin/phpunit  --filter test_hotel_can_be_created
+    ```
+
+   
+
+
