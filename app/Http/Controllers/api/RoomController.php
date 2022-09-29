@@ -39,8 +39,12 @@ class RoomController extends Controller
         
       $hotel = Hotel::where('id',$request->hotel_id)->first();
 
-        $rooms = $hotel->rooms->count();
+      /*cosultar las rooms de es hotel */
 
+        $rooms = Room::where('hotel_id',$hotel->id)->get();
+
+        $rooms = $hotel->rooms->sum('amount');
+    
         if($hotel->num_rooms <= $rooms){
             return response()->json(['message'=>'Habitaciones Ocupadas'],400);
         }else{

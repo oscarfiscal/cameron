@@ -51,9 +51,9 @@ class HotelController extends Controller
      */
     public function show(Hotel $hotel)
     {
-       /*  $hotel->load('rooms'); */
-       $hotel->rooms;
-       /* responder json */
+       
+         $hotel->rooms;
+
         return response()->json($hotel,200);
        
        
